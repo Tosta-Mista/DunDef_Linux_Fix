@@ -1,7 +1,7 @@
-DunDef3.4_Linux_Fix
+DunDef3.2_Linux_Fix
 ===================
 
-Quick fix for Dungeon Defender Eternity Linux 3.4 build
+Quick fix for Dungeon Defender Eternity Linux 3.2 build
 
 
 ### How to use
