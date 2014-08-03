@@ -34,10 +34,6 @@ echo `ldd $DUNDEFPATH | grep "not found" | tr "\t" " " | cut -d"=" -f1`
 echo ""
 
 
-echo "# ATTENTION : #######################################" 
-echo "# - UNINSTALL YOUR NVIDIA/ATI DRIVERS"
-echo "# - REBOOT"
-echo "# - INSTALL THE NEW NVIDIA/ATI DRIVERS"
-echo "# - REBOOT AGAIN"
-echo "# - ENJOY your game..."
-echo "#####################################################"
+echo "# ATTENTION : ##############################################################" 
+echo "# If OpenGL is no more supported, please reinstall your NVIDIA/ATI Drivers #"
+echo "############################################################################"
