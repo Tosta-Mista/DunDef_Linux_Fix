@@ -26,7 +26,7 @@ echo "Add i386 arch"
 sudo dpkg-add-architecture i386
 
 echo "Installing missing libs :"
-sudo apt-get install -y libsfm-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
+sudo aptitude install -y libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
 echo ""
 
 echo "Checking unavailable libs (If you have nothing is good :))"
@@ -37,3 +37,8 @@ echo ""
 echo "# ATTENTION : ##############################################################" 
 echo "# If OpenGL is no more supported, please reinstall your NVIDIA/ATI Drivers #"
 echo "############################################################################"
+
+# Cleaning 
+unset DUNDEFPATH
+unset unlib
+unset avlib
