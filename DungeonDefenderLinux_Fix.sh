@@ -24,13 +24,13 @@ function cleaning {
 ## Check for unavailble libs :
 echo "Checking for unavailable libs..."
 unlib=`ldd $DUNDEFPATH | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-echo $unlib
+echo ${unlib}
 echo ""
 
 ## Check for available libs :
 echo "Checking for available libs..."
 avlib=`ldd $DUNDEFPATH | grep lib  | tr "\t" " " | cut -d"=" -f1`
-echo $avlib
+echo ${avlib}
 echo ""
 
 while true; do
@@ -41,9 +41,9 @@ while true; do
 	echo -e "Your choice : "
 	read choice
 
-	case $choice in 
+	case ${choice} in
 		1)
-			ln -sf $STEAMPATH $DUNDEFPATHLINK
+			ln -sf ${STEAMPATH} ${DUNDEFPATHLINK}
 			clear;
 			echo "Symlink Done!"
 			echo "#################################################"
@@ -63,7 +63,7 @@ while true; do
 			echo ""
 			
 			echo "Checking unavailable libs (If you have nothing is good :))"
-			echo `ldd $DUNDEFPATH | grep "not found" | tr "\t" " " | cut -d"=" -f1`
+			echo `ldd ${DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
 			echo ""
 			
 			echo "# ATTENTION : ##############################################################" 
