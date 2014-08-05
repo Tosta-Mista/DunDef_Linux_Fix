@@ -56,7 +56,7 @@ while true; do
 			# Installing Main libs
 			## activation of i386 arch
 			echo "Add i386 arch"
-			sudo dpkg-add-architecture i386
+			sudo dpkg --add-architecture i386
 			
 			echo "Installing missing libs :"
 			sudo aptitude install -y libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
