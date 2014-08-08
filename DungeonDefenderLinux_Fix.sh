@@ -112,13 +112,11 @@ function AdrianFix {
     unset ADRIAN_GCONFPATH
     unset ADRIAN_DUNDEFPATHARCH
     unset ADRIAN_DUNDEFLAUNCHER
-    unset ${avlib}
-    unset ${unlib}
+    unset avlib
+    unset unlib
 }
 
-## Scan your libs :
-CheckLibs
-
+#Show menu :
 while true; do
     echo "------------------------"
     echo "Choose your workaround :"
@@ -126,7 +124,7 @@ while true; do
     echo " 1 - Is not an Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
     echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
     echo " 3 - Adrian Fix --> Symlink way (Seems work on ArchLinux)"
-    echo " 4 - Check where yours Libs are"
+    echo " 4 - Show all directory used to provide your Libs"
     echo " Q - Quit"
     echo "------------------------------------------"
     echo -e "Your choice : "
