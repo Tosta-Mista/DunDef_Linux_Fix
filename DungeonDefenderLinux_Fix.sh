@@ -82,6 +82,10 @@ function AdrianFix {
     ln -sf ${ADRIAN_GLIBPATH} ${ADRIAN_DUNDEFPATHARCH}
     ln -sf ${ADRIAN_GCONFPATH} ${ADRIAN_DUNDEFPATHARCH}
     LD_PRELOAD=/usr/lib32/libudev.so.0 %command%
+
+    unset ADRIAN_GLIBPATH
+    unset ADRIAN_GCONFPATH
+    unset ADRIAN_DUNDEFPATHARCH
 }
 
 ## Scan your libs :
@@ -111,7 +115,6 @@ while true; do
             ;;
         3)
             AdrianFix
-            cleaning
             exit 0;
             ;;
         Q|q)
