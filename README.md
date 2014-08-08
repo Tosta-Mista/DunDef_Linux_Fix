@@ -55,7 +55,21 @@ done
 ```
 
 ## How to use
-set DUNDEFPATH variable with your Dungeon defender path
+Set PATH constant with your Dungeon defender path.
+```shell
+## Is not an Edge Fix ;) PATH : (Default path for SteamOS)
+EDGE_DUNDEFPATH="/usr/local/games/Steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
+EDGE_STEAMPATH="/usr/local/games/Steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"
+EDGE_DUNDEFPATHLINK="/usr/local/games/Steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
+## Panda's fix PATH : (Default path for Ubuntu)
+PANDA_DUNDEFPATH="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
+## Adrian Fix specials paths : (Default path for ArchLinux (not sure, need to install an Archlinux when i can... to do some test))
+ADRIAN_DUNDEFLAUNCHER="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
+ADRIAN_GLIBPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2"
+ADRIAN_GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libgconf-2.so.4"
+ADRIAN_DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
+```
+
 Add permission to the script :
 ```shell
 sudo chmod +x DungeonDefenderLinux_Fix.sh
