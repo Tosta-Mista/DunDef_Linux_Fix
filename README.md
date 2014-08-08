@@ -7,14 +7,14 @@ Thanks in advance.
 
 ## Add a new fix 
 Create your function :
-```
+```shell
 function NameOfFix {
     # Put your fix here!
 }
 ```
 
 Add an entry into the loop :
-```
+```shell
 while true; do
     echo "What workaround do you want?"
     echo "----------------------------"
@@ -57,12 +57,12 @@ done
 ## How to use
 set DUNDEFPATH variable with your Dungeon defender path
 Add permission to the script :
-```
+```shell
 sudo chmod +x DungeonDefenderLinux_Fix.sh
 ```
 
 Launch :
-```
+```shell
 ./DungeonDefenderLinux_Fix.sh
 ```
 
