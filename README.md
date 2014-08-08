@@ -80,7 +80,7 @@ ADRIAN_DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEt
 
 Add permission to the script :
 ```shell
-sudo chmod +x DungeonDefenderLinux_Fix.sh
+chmod +x DungeonDefenderLinux_Fix.sh
 ```
 
 Launch :
