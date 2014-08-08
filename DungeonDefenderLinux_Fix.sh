@@ -21,6 +21,33 @@ ADRIAN_GLIBPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-
 ADRIAN_GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libgconf-2.so.4"
 ADRIAN_DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
 
+# Function used to ask if the user want to launch the game :
+function GameLaunch {
+    local step=true
+    while ${step}; do
+        echo -e "Do you want launch Dungeon Defender?(Y/N)"
+        read answer
+        case ${answer} in
+            Y|y)
+                steam steam://rungameid/302270 &
+                step=false
+                ;;
+            N|n)
+                echo "OK let's go out..."
+                step=false
+                ;;
+            *)
+                echo "Please use Y or N."
+                step=true
+                ;;
+        esac
+    done
+
+    # Cleaning
+    unset answer
+    unset step
+}
+
 # Not an Edge Fix this workaround seems work well on SteamOS linux flavour.
 function Not_An_EdgeFix {
     ## Check for available libs :
@@ -38,7 +65,6 @@ function Not_An_EdgeFix {
     ln -sf ${EDGE_STEAMPATH} ${EDGE_DUNDEFPATHLINK}
     clear;
     echo "Symlink Done!"
-
 
     ## Cleaing
     unset EDGE_DUNDEFPATH
@@ -90,6 +116,7 @@ function PandaFix {
 
 }
 
+# Adrian Workaround another symlink way for Archlinux Install (maybe other flavours) not tested yet ...
 function AdrianFix {
     ## Check for available libs :
     echo "Checking for available libs..."
@@ -114,7 +141,10 @@ function AdrianFix {
     unset ADRIAN_DUNDEFLAUNCHER
     unset avlib
     unset unlib
+
 }
+
+
 
 #Show menu :
 while true; do
@@ -133,16 +163,17 @@ while true; do
     case ${choice} in
         1)
             Not_An_EdgeFix
-            cleaning
+            GameLaunch
             exit 0;
             ;;
         2)
             PandaFix
-            cleaning
+            GameLaunch
             exit 0;
             ;;
         3)
             AdrianFix
+            GameLaunch
             exit 0;
             ;;
         4)
@@ -151,7 +182,6 @@ while true; do
             exit 0;
             ;;
         Q|q)
-            cleaning
             exit 0;
             ;;
         *)
