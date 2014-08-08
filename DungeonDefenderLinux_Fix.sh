@@ -6,7 +6,7 @@
 ###########################
 
 # SET PATH :
-## Dungeaon defender launcher path 
+## Dungeaon defender launcher path
 DUNDEFPATH="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
 ## Steam libs path
 STEAMPATH="$HOME/.steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"
@@ -18,15 +18,15 @@ GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-
 DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
 
 function cleaning {
-	unset DUNDEFPATH 
-	unset DUNDEFPATHLINK
-	unset GLIBPATH
-	unset GCONFPATH
-	unset DUNDEFPATHARCH
-	unset STEAMPATH
-	unset unlib
-	unset avlib
-	unset choice
+    unset DUNDEFPATH
+    unset DUNDEFPATHLINK
+    unset GLIBPATH
+    unset GCONFPATH
+    unset DUNDEFPATHARCH
+    unset STEAMPATH
+    unset unlib
+    unset avlib
+    unset choice
 }
 
 function CheckLibs {
@@ -43,12 +43,12 @@ function CheckLibs {
 }
 
 function EdgeFix {
-	ln -sf ${STEAMPATH} ${DUNDEFPATHLINK}
-	clear;
-	echo "Symlink Done!"
-	echo "#################################################"
-	echo "# Try to launch Dungeon Defender Steam	      #"
-	echo "#################################################"
+    ln -sf ${STEAMPATH} ${DUNDEFPATHLINK}
+    clear;
+    echo "Symlink Done!"
+    echo "#################################################"
+    echo "# Try to launch Dungeon Defender Steam	      #"
+    echo "#################################################"
 }
 
 function PandaFix {
@@ -76,44 +76,44 @@ function AdrianFix {
     LD_PRELOAD=/usr/lib32/libudev.so.0 %command%
 }
 
-## Check for unavailble libs :
+## Scan your libs :
 CheckLibs
 
 while true; do
-	echo "What workaround do you want?"
-	echo "----------------------------"
-	echo " 1 - Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
-	echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
-	echo " 3 - Adrian Fix --> Symlink way (Work on ArchLinux)"
-	echo " Q - Quit"
-	echo "------------------------------------------"
-	echo -e "Your choice : "
-	read choice
+    echo "What workaround do you want?"
+    echo "----------------------------"
+    echo " 1 - Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
+    echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
+    echo " 3 - Adrian Fix --> Symlink way (Work on ArchLinux)"
+    echo " Q - Quit"
+    echo "------------------------------------------"
+    echo -e "Your choice : "
+    read choice
 
-	case ${choice} in
-		1)
+    case ${choice} in
+        1)
             EdgeFix
-			cleaning
-			exit 0;
-			;;
-		2)
-			PandaFix
-			cleaning
-			exit 0;
-			;;
-		3)
-		    AdrianFix
-		    cleaning
-		    exit 0;
-		    ;;
-		Q|q)
-			cleaning
-			exit 0;	
-			;;
-		*)
-			echo "Please choose something available on the list..."
-			;;
-	esac
+            cleaning
+            exit 0;
+            ;;
+        2)
+            PandaFix
+            cleaning
+            exit 0;
+            ;;
+        3)
+            AdrianFix
+            cleaning
+            exit 0;
+            ;;
+        Q|q)
+            cleaning
+            exit 0;
+            ;;
+        *)
+            echo "Please choose something available on the list..."
+            ;;
+    esac
 done
 
 exit 0;
