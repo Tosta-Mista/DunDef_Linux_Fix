@@ -55,6 +55,14 @@ done
 ```
 
 ## How to use
+Download the script :
+With Git :
+```
+git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
+```
+Without Git :
+(https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip)
+
 Set PATH constant with your Dungeon defender path.
 ```shell
 ## Is not an Edge Fix ;) PATH : (Default path for SteamOS)
