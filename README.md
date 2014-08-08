@@ -60,8 +60,8 @@ With Git :
 ```
 git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
 ```
-Without Git :
-(https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip)
+Without Git : <br />
+https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip
 
 Set PATH constant with your Dungeon defender path.
 ```shell
