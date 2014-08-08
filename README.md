@@ -56,16 +56,15 @@ done
 
 ## How to use
 set DUNDEFPATH variable with your Dungeon defender path
-
-'''Add permission to the script'''
+Add permission to the script :
 ```
 sudo chmod +x DungeonDefenderLinux_Fix.sh
 ```
 
-'''Launch'''
+Launch :
 ```
 ./DungeonDefenderLinux_Fix.sh
 ```
 
-''' Misc'''
+## Misc :
 I hope this scripts can help somebody.
