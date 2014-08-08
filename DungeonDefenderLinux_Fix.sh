@@ -84,7 +84,7 @@ while true; do
     echo "----------------------------"
     echo " 1 - Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
     echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
-    echo " 3 - Adrian Fix --> Symlink way (Work on ArchLinux)"
+    echo " 3 - Adrian Fix --> Symlink way (Seems work on ArchLinux)"
     echo " Q - Quit"
     echo "------------------------------------------"
     echo -e "Your choice : "

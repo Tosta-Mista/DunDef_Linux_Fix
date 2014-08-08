@@ -1,6 +1,9 @@
 DunDef3.2_Linux_Fix
 ===================
-Quick fix for Dungeon Defender Eternity Linux 3.2 build
+Quick fix for Dungeon Defender Eternity Linux 3.2 build. I can only test this patch on Debian Flavours... 
+Archlinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result.
+
+Thanks in advance.
 
 ## Add a new fix 
 Create your function :
