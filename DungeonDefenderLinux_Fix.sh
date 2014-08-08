@@ -7,39 +7,46 @@
 ###########################
 
 # SET PATH :
-## Dungeaon defender launcher path
-DUNDEFPATH="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
-## Steam libs path
-STEAMPATH="$HOME/.steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"
-## Dnndef Binaries path
-DUNDEFPATHLINK="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
-## Adrian Fix specials paths :
-GLIBPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2"
-GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libgconf-2.so.4"
-DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
+## Is not an Edge Fix ;) PATH : (Default path for SteamOS)
+EDGE_DUNDEFPATH=""
+EDGE_STEAMPATH=""
+EDGE_DUNDEFPATHLINK=""
+
+## Panda's fix PATH : (Default path for Ubuntu)
+PANDA_DUNDEFPATH="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
+PANDA_STEAMPATH="$HOME/.steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"
+PANDA_DUNDEFPATHLINK="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
+
+## Adrian Fix specials paths : (Default path for ArchLinux (not sure, need to install an Archlinux when i can... to do some test))
+ADRIAN_GLIBPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libdbus-glib-1.so.2"
+ADRIAN_GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/libgconf-2.so.4"
+ADRIAN_DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
 
 function cleaning {
-    unset DUNDEFPATH
-    unset DUNDEFPATHLINK
-    unset GLIBPATH
-    unset GCONFPATH
-    unset DUNDEFPATHARCH
-    unset STEAMPATH
+
+    unset PANDA_DUNDEFPATH
+    unset PANDA_DUNDEFPATHLINK
+    unset PANDA_STEAMPATH
+
+    unset ADRIAN_GLIBPATH
+    unset ADRIAN_GCONFPATH
+    unset ADRIAN_DUNDEFPATHARCH
+
     unset unlib
     unset avlib
     unset choice
 }
 
 function CheckLibs {
-    echo "Checking for unavailable libs..."
-    unlib=`ldd ${DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-    echo ${unlib}
-    echo ""
-
     ## Check for available libs :
     echo "Checking for available libs..."
     avlib=`ldd ${DUNDEFPATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
     echo ${avlib}
+    echo ""
+
+    echo "Checking for unavailable libs..."
+    unlib=`ldd ${DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
+    echo ${unlib}
     echo ""
 }
 
@@ -72,8 +79,8 @@ function PandaFix {
 }
 
 function AdrianFix {
-    ln -sf ${GLIBPATH} ${DUNDEFPATHARCH}
-    ln -sf ${GCONFPATH} ${DUNDEFPATHARCH}
+    ln -sf ${ADRIAN_GLIBPATH} ${ADRIAN_DUNDEFPATHARCH}
+    ln -sf ${ADRIAN_GCONFPATH} ${ADRIAN_DUNDEFPATHARCH}
     LD_PRELOAD=/usr/lib32/libudev.so.0 %command%
 }
 
