@@ -14,8 +14,6 @@ EDGE_DUNDEFPATHLINK="/usr/local/games/Steam/SteamApps/common/DunDefEternity/DunD
 
 ## Panda's fix PATH : (Default path for Ubuntu)
 PANDA_DUNDEFPATH="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
-PANDA_STEAMPATH="$HOME/.steam/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"
-PANDA_DUNDEFPATHLINK="$HOME/.steam/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
 
 ## Adrian Fix specials paths : (Default path for ArchLinux (not sure, need to install an Archlinux when i can... to do some test))
 ADRIAN_DUNDEFLAUNCHER="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"
@@ -64,6 +62,9 @@ function PandaFix {
     unlib=`ldd ${PANDA_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ${unlib}
     echo ""
+
+    echo "Directory used for yours Libs"
+    ldconfig -v 2>/dev/null | grep -v ^$'\t'
 
     # Installing Main libs
     ## activation of i386 arch
@@ -119,8 +120,9 @@ function AdrianFix {
 CheckLibs
 
 while true; do
-    echo "What workaround do you want?"
-    echo "----------------------------"
+    echo "------------------------"
+    echo "Choose your workaround :"
+    echo "------------------------"
     echo " 1 - Is not an Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
     echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
     echo " 3 - Adrian Fix --> Symlink way (Seems work on ArchLinux)"
@@ -146,7 +148,8 @@ while true; do
             exit 0;
             ;;
         4)
-            ldconfig -v | less
+            # Prints out all directory used to provide your libs
+            ldconfig -v 2>/dev/null | grep -v ^$'\t'
             exit 0;
             ;;
         Q|q)
