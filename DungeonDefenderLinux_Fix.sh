@@ -2,7 +2,8 @@
 ###########################
 # Workaround for Dungeon defender Eternity on linux
 # --------------------------------------------------
-# Big thanks for the community arround Valve! Thanks for all persons who make this game playable again.
+# Big thanks for the community arround Valve!
+# Thanks for your feedback, reports...
 ###########################
 
 # SET PATH :
