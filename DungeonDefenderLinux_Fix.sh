@@ -93,13 +93,24 @@ function PandaFix {
     ldconfig -v 2>/dev/null | grep -v ^$'\t'
 
     # Installing Main libs
-    ## activation of i386 arch
-    echo "Add i386 arch"
-    sudo dpkg --add-architecture i386
+    if [[ -x "$(which aptitude)" ]]; then
+        echo "Add i386 arch"
+        sudo dpkg --add-architecture i386
 
-    echo "Installing missing libs :"
-    sudo aptitude install -y libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
-    echo ""
+        echo "Installing missing libs :"
+        sudo aptitude install -y libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
+        echo ""
+    fi
+
+    if [[ -x "$(which yum)" ]]; then
+        echo "Installing missing libs :"
+       sudo yum install
+    fi
+
+    if [[ -x "$(which pacman)" ]]; then
+        echo "Installing missing libs :"
+       sudo pacman -S
+    fi
 
     echo "Checking unavailable libs (If you have nothing is good :))"
     echo `ldd ${PANDA_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
