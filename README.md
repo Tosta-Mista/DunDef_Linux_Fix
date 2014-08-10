@@ -55,14 +55,15 @@ done
 ```
 
 ## How to use
-Download the script :
-With Git :
+### Download the script :
+With Git :<br />
 ```
 git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
 ```
 Without Git : <br />
 https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip
 
+### Set your path
 Set PATH constant with your Dungeon defender path.
 ```shell
 ## Is not an Edge Fix ;) PATH : (Default path for SteamOS)
@@ -78,6 +79,7 @@ ADRIAN_GCONFPATH="$HOME/.local/share/ubuntu12_32/steam-runtime/i386/usr/lib/i386
 ADRIAN_DUNDEFPATHARCH="/opt/games/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux"
 ```
 
+### Run
 Add permission to the script :
 ```shell
 chmod +x DungeonDefenderLinux_Fix.sh
