@@ -4,7 +4,6 @@ Quick fix for Dungeon Defender Eternity Linux 3.2 build. I can only test this pa
 Archlinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result.
 
 Thanks in advance.
-
 ## Add a new fix 
 Create your function :
 ```shell
@@ -62,6 +61,8 @@ git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
 ```
 Without Git : <br />
 https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip
+or :<br />
+wget https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip
 
 ### Set your path
 Set PATH constant with your Dungeon defender path.
@@ -92,3 +93,5 @@ Launch :
 
 ## Misc :
 I hope this scripts can help somebody.
+
+Thank you very much @bubylou for your contribution.
