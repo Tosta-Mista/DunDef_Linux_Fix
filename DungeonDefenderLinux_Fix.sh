@@ -104,12 +104,12 @@ function PandaFix {
 
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
-       sudo yum install
+        sudo yum install GConf2.i686 GConf2-devel.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 cryptopp.i686 libcurl.i686 libcurl-devel.i686 freetype.i686 freetype-devel.i686 libXrandr.i686 libXrandr-devel.i686 gtk2.i686 gtk2-devel.i686 pango.i686 pango-devel.i686 cairo.i686 cairo-devel.i686 gfk-pixbuf2-devel.i686 gtk-pixbuf2.i686
     fi
 
     if [[ -x "$(which pacman)" ]]; then
         echo "Installing missing libs :"
-       sudo pacman -S
+        sudo pacman -S
     fi
 
     echo "Checking unavailable libs (If you have nothing is good :))"
