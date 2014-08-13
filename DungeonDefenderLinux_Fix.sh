@@ -146,7 +146,7 @@ function AdrianFix {
 
     ln -sf ${ADRIAN_GLIBPATH} ${ADRIAN_DUNDEFPATHARCH}
     ln -sf ${ADRIAN_GCONFPATH} ${ADRIAN_DUNDEFPATHARCH}
-    LD_PRELOAD=/usr/lib32/libudev.so.0 ${ADRIAN_DUNDEFLAUNCHER}
+    # LD_PRELOAD=/usr/lib32/libudev.so.0 ${ADRIAN_DUNDEFLAUNCHER} ## Removed need to test that...
     echo "Symlink done!"
 
     # Cleaning before exit!
