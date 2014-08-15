@@ -33,7 +33,7 @@ function GameLaunch {
                 step=false
                 ;;
             N|n)
-                echo "OK let's go out..."
+                echo "Quiting..."
                 step=false
                 ;;
             *)
@@ -42,36 +42,23 @@ function GameLaunch {
                 ;;
         esac
     done
-
-    # Cleaning
-    unset answer
-    unset step
 }
 
 # Not an Edge Fix this workaround seems work well on SteamOS linux flavour.
 function Not_An_EdgeFix {
     ## Check for available libs :
     echo "Checking for available libs..."
-    avlib=`ldd ${EDGE_DUNDEFPATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
-    echo ${avlib}
+    echo `ldd ${EDGE_DUNDEFPATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
     echo "Checking for unavailable libs..."
-    unlib=`ldd ${EDGE_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-    echo ${unlib}
+    echo `ldd ${EDGE_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
     ## Doing job
     ln -sf ${EDGE_STEAMPATH} ${EDGE_DUNDEFPATHLINK}
     clear;
-    echo "Symlink Done!"
-
-    ## Cleaing
-    unset EDGE_DUNDEFPATH
-    unset EDGE_STEAMPATH
-    unset EDGE_DUNDEFPATHLINK
-    unset avlib
-    unset unlib
+    echo "Symlinking Done!"
 }
 
 # PandaFix workaround (For Debian/Ubuntu/Kubuntu etc... ) install the package needed and afterwards the libs are provided
@@ -79,19 +66,17 @@ function Not_An_EdgeFix {
 function PandaFix {
     ## Check for available libs :
     echo "Checking for available libs..."
-    avlib=`ldd ${PANDA_DUNDEFPATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
-    echo ${avlib}
+    echo `ldd ${PANDA_DUNDEFPATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
     ## Check for unavailable libs :
     echo "Checking for unavailable libs..."
-    unlib=`ldd ${PANDA_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-    echo ${unlib}
+    echo `ldd ${PANDA_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
-    echo "Directory used for yours Libs"
+    echo "Directories used for your libs"
     # Prints out all directory used to provide your libs
-    ldconfig -v 2>/dev/null | grep -v ^$'\t'
+    sudo ldconfig -v 2>/dev/null | grep -v ^$'\t'
 
     # Installing Main libs
     ## Debian
@@ -100,79 +85,67 @@ function PandaFix {
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo aptitude install -y libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386
-        echo ""
+        sudo aptitude install libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 \
+            libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 \
+            libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 \
+            libgdk-pixbuf2.0-0:i386
     fi
 
     ## Red Hat
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
-        sudo yum install GConf2.i686 GConf2-devel.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 cryptopp.i686 libcurl.i686 libcurl-devel.i686 freetype.i686 freetype-devel.i686 libXrandr.i686 libXrandr-devel.i686 gtk2.i686 gtk2-devel.i686 pango.i686 pango-devel.i686 cairo.i686 cairo-devel.i686 gfk-pixbuf2-devel.i686 gtk-pixbuf2.i686
+        sudo yum install GConf2.i686 GConf2-devel.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 \
+            cryptopp.i686 libcurl.i686 libcurl-devel.i686 freetype.i686 freetype-devel.i686 libXrandr.i686 \
+            libXrandr-devel.i686 gtk2.i686 gtk2-devel.i686 pango.i686 pango-devel.i686 cairo.i686 \
+            cairo-devel.i686 gfk-pixbuf2-devel.i686 gtk-pixbuf2.i686
     fi
 
     ## ArchLinux
     if [[ -x "$(which pacman)" ]]; then
         echo "Installing missing libs :"
-        sudo pacman -S
+        echo "Pacman is currently not supported"
+        #sudo pacman -S
     fi
 
-    echo "Checking unavailable libs (If you have nothing is good :))"
+    echo ""
+    echo "Checking unavailable libs (If you have nothing then you're good :))"
     echo `ldd ${PANDA_DUNDEFPATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
-    echo "# ATTENTION : ##############################################################"
-    echo "# If OpenGL is no more supported, please reinstall your NVIDIA/ATI Drivers #"
-    echo "############################################################################"
-
-    # Cleaning
-    unset PANDA_DUNDEFPATH
-    unset unlib
-    unset avlib
-
+    echo "# ATTENTION : ################################################################"
+    echo "# If OpenGL is no longer supported, please reinstall your NVIDIA/ATI Drivers #"
+    echo "##############################################################################"
 }
 
 # Adrian Workaround another symlink way for Archlinux Install (maybe other flavours) not tested yet ...
 function AdrianFix {
     ## Check for available libs :
     echo "Checking for available libs..."
-    avlib=`ldd ${ADRIAN_DUNDEFLAUNCHER} | grep lib  | tr "\t" " " | cut -d"=" -f1`
-    echo ${avlib}
+    echo `ldd ${ADRIAN_DUNDEFLAUNCHER} | grep lib  | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
     echo "Checking for unavailable libs..."
-    unlib=`ldd ${ADRIAN_DUNDEFLAUNCHER} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-    echo ${unlib}
+    echo `ldd ${ADRIAN_DUNDEFLAUNCHER} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
 
     ln -sf ${ADRIAN_GLIBPATH} ${ADRIAN_DUNDEFPATHARCH}
     ln -sf ${ADRIAN_GCONFPATH} ${ADRIAN_DUNDEFPATHARCH}
     # LD_PRELOAD=/usr/lib32/libudev.so.0 ${ADRIAN_DUNDEFLAUNCHER} ## Removed need to test that...
-    echo "Symlink done!"
-
-    # Cleaning before exit!
-    unset ADRIAN_GLIBPATH
-    unset ADRIAN_GCONFPATH
-    unset ADRIAN_DUNDEFPATHARCH
-    unset ADRIAN_DUNDEFLAUNCHER
-    unset avlib
-    unset unlib
-
+    echo "Symlinking done!"
 }
-
-
 
 #Show menu :
 while true; do
     echo "------------------------"
     echo "Choose your workaround :"
     echo "------------------------"
-    echo " 1 - Is not an Edge Fix --> Symlink way (Work on Redhat/Fedora and Debian/Ubuntu)"
-    echo " 2 - PandaWan Fix --> Package way (Work on Debian/Ubuntu 64 bit) "
-    echo " 3 - Adrian Fix --> Symlink way (Seems work on ArchLinux)"
-    echo " 4 - Show all directory used to provide your Libs"
+    echo " 1 - Is not an Edge Fix --> Symlink way (Works on Redhat/Fedora and Debian/Ubuntu)"
+    echo " 2 - PandaWan Fix --> Package way (Works on Debian/Ubuntu 64 bit) "
+    echo " 3 - Adrian Fix --> Symlink way (Seems to work on ArchLinux)"
+    echo " 4 - Show all directories used to provide your Libs"
     echo " Q - Quit"
     echo "------------------------------------------"
-    echo -e "Your choice : "
+    echo "Your choice : "
     read choice
 
     case ${choice} in
@@ -193,7 +166,7 @@ while true; do
             ;;
         4)
             # Prints out all directory used to provide your libs
-            ldconfig -v 2>/dev/null | grep -v ^$'\t'
+            sudo ldconfig -v 2>/dev/null | grep -v ^$'\t'
             exit 0;
             ;;
         Q|q)
@@ -203,9 +176,4 @@ while true; do
             echo "Please choose something available on the list..."
             ;;
     esac
-
-    # Cleaning
-    unset choice
 done
-
-exit 0;
