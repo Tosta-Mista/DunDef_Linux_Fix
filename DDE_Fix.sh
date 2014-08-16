@@ -121,7 +121,7 @@ function PandaFix {
     fi
 
     echo ""
-    echo "Checking unavailable libs (If you have nothing then you're good :))"
+    echo "Checking unavailable libs :"
     echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
 }
