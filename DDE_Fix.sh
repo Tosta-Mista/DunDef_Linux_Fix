@@ -114,7 +114,7 @@ function PandaFix {
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
         #TODO: Remove comment when ${pacman} is provided.
-        #sudo pacman -Syu && sudo pacman -S ${pacman}
+        #sudo pacman -Syy && sudo pacman -S ${pacman}
     fi
 
     echo ""
