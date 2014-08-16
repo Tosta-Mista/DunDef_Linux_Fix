@@ -7,10 +7,11 @@
 ###########################
 
 # SET PATH :
-STEAMPATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", ""); print }'`
-STEAM_LIB_PATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", "/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"); print }'`
-DUNDEF_LIB_PATH=`locate "steam.pid" | head -1 | awk '{sub("/[a-z]*.[a-z]*.$", "/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"); print }'`
-DUNDEF_LAUNCHER_PATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", "/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"); print }'`
+STEAMPATH=`locate "steam.pipe" | head -1 | sed "s/\/steam\.pipe/\//"`
+STEAM_LIB_PATH=`locate steam-runtime/i386 | head -1`
+STEAMAPPS=`find $STEAMPATH -name SteamApps`
+DUNDEF_LIB_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
+DUNDEF_LAUNCHER_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternityLauncher"
 
 apt="libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 \
     libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 \
@@ -73,8 +74,10 @@ function SymLinkFix () {
     echo ""
 
     ## Doing job
-    ln -sf ${STEAM_LIB_PATH} ${DUNDEF_LIB_PATH}
-    clear;
+    ln -sf $STEAM_LIB_PATH/usr/lib/i386-linux-gnu/* $DUNDEF_LIB_PATH
+    ln -sf $STEAM_LIB_PATH/lib/i386-linux-gnu/* $DUNDEF_LIB_PATH
+
+    clear
     echo "Symlinking Done!"
 }
 
