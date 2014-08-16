@@ -97,20 +97,20 @@ function PandaFix {
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo aptitude install ${apt}
+        sudo aptitude update && sudo aptitude install ${apt}
 
     elif [[ -x "$(which apt-get)" ]]; then
         echo "Add i386 arch"
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo apt-get install ${apt}
+        sudo apt-get update && sudo apt-get install ${apt}
     fi
 
     ## Red Hat
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
-        sudo yum install ${yum}
+        sudo yum update && sudo yum install ${yum}
     fi
 
     ## ArchLinux
@@ -120,7 +120,7 @@ function PandaFix {
         sudo tee -a "[multilib]" /etc/pacman.conf && sudo tee -a "Include = /etc/pacman.d/mirrorlist" /etc/pacman.conf
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
-        #sudo pacman -S ${pacman}
+        #sudo pacman -Syu && sudo pacman -S ${pacman}
     fi
 
     echo ""
