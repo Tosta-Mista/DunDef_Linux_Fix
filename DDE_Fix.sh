@@ -125,9 +125,9 @@ while true; do
     echo "----------------------------"
     echo " [1] -> SymLink Fix   --> Create all symlinks needed to fix your issue. (All Linux OS)"
     echo " [2] -> PandaWan Fix  --> Install all package needed for your game. (Apt/Yum manager only.)"
-    echo " [3] -> ShowMyLibs    --> Show all directories used to provide your Libs (All linux OS)"
+    echo " [3] -> ShowMyLibs    --> Show all directories used to provide your Libs (All Linux OS)"
     echo " [4] -> Cleaning      --> Remove Symlink Fix!"
-    echo " [Q] -> Quit"
+    echo " [Q] -> Quit          --> Exit..."
     echo "---------------------------"
     echo "Your choice : "
     read choice
