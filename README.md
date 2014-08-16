@@ -7,14 +7,14 @@ package manager the PandaFix doesn't work for the moment.<br />
 
 ## How to use
 ### Download the script :
-First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip) or you can use the git repo :<br />
+First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef_Linux_Fix/archive/master.zip) or you can use the git repo :<br />
 With Git :<br />
 ```
-git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
+git clone https://github.com/Tosta-Mixta/DunDef_Linux_Fix.git
 ```
 Afterward if you want run your script, make sure your file is executable :<br />
 ```
-cd DunDef3.2_Linux_Fix/
+cd DunDef_Linux_Fix/
 chmod +x DDE_Fix.sh
 ```
 Now you can run your script :<br />
