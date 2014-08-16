@@ -28,7 +28,7 @@ pacman=""
 
 
 # Function used to ask if the user want to launch the game :
-function GameLaunch () {
+function LaunchGame () {
     local step=true
     while ${step}; do
         echo -e "Do you want launch Dungeon Defender?(Y/N)"
@@ -146,12 +146,12 @@ while true; do
     case ${choice} in
         1)
             SymLinkFix
-            GameLaunch
+            LaunchGame
             exit 0;
             ;;
         2)
             PandaFix
-            GameLaunch
+            LaunchGame
             exit 0;
             ;;
         3)
