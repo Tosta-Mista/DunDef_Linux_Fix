@@ -12,6 +12,16 @@ STEAM_LIB_PATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", "/
 DUNDEF_LIB_PATH=`locate "steam.pid" | head -1 | awk '{sub("/[a-z]*.[a-z]*.$", "/steam/SteamApps/common/DunDefEternity/DunDefEternity/Binaries/Linux/"); print }'`
 DUNDEF_LAUNCHER_PATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", "/steam/SteamApps/common/DunDefEternity/DunDefEternityLauncher"); print }'`
 
+apt="libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 libcurl4-nss-dev:i386 \
+    libcurl4-openssl-dev:i386 libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 \
+    libpangocairo-1.0-0:i386 libasound2-dev:i386 libgdk-pixbuf2.0-0:i386"
+yum="GConf2.i686 GConf2-devel.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 cryptopp.i686 libcurl.i686 \
+    libcurl-devel.i686 freetype.i686 freetype-devel.i686 libXrandr.i686 libXrandr-devel.i686 gtk2.i686 \
+    gtk2-devel.i686 pango.i686 pango-devel.i686 cairo.i686 cairo-devel.i686 gfk-pixbuf2-devel.i686 \
+    gtk-pixbuf2.i686"
+pacman=""
+
+
 # Function used to ask if the user want to launch the game :
 function GameLaunch () {
     local step=true
@@ -80,26 +90,27 @@ function PandaFix {
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo aptitude install libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 \
-            libcrypto++-dev:i386 libcurl4-nss-dev:i386 libcurl4-openssl-dev:i386 libfreetype6:i386 \
-            libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 libasound2-dev:i386 \
-            libgdk-pixbuf2.0-0:i386
+        sudo aptitude install $apt
+
+    elif [[ -x "$(which apt-get)" ]]; then
+        echo "Add i386 arch"
+        sudo dpkg --add-architecture i386
+
+        echo "Installing missing libs :"
+        sudo apt-get install $apt
     fi
 
     ## Red Hat
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
-        sudo yum install GConf2.i686 GConf2-devel.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 \
-            cryptopp.i686 libcurl.i686 libcurl-devel.i686 freetype.i686 freetype-devel.i686 libXrandr.i686 \
-            libXrandr-devel.i686 gtk2.i686 gtk2-devel.i686 pango.i686 pango-devel.i686 cairo.i686 \
-            cairo-devel.i686 gfk-pixbuf2-devel.i686 gtk-pixbuf2.i686
+        sudo yum install $yum
     fi
 
     ## ArchLinux
     if [[ -x "$(which pacman)" ]]; then
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
-        #sudo pacman -S
+        #sudo pacman -S $pacman
     fi
 
     echo ""
