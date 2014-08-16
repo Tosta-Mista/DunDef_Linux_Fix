@@ -13,7 +13,7 @@ sudo updatedb
 # SET PATH :
 STEAMPATH=`locate "steam.pipe" | head -1 | sed "s/\/steam\.pipe/\//"`
 STEAM_LIB_PATH=`locate steam-runtime/i386 | head -1`
-STEAMAPPS=`find $STEAMPATH -name SteamApps`
+STEAMAPPS=`find ${STEAMPATH} -name SteamApps`
 DUNDEF_LIB_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
 DUNDEF_LAUNCHER_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternityLauncher"
 
@@ -78,8 +78,8 @@ function SymLinkFix () {
     echo ""
 
     ## Doing job
-    ln -sf $STEAM_LIB_PATH/usr/lib/i386-linux-gnu/* $DUNDEF_LIB_PATH
-    ln -sf $STEAM_LIB_PATH/lib/i386-linux-gnu/* $DUNDEF_LIB_PATH
+    ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/* ${DUNDEF_LIB_PATH}
+    ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/* ${DUNDEF_LIB_PATH}
 
     clear
     echo "Symlinking Done!"
@@ -97,27 +97,30 @@ function PandaFix {
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo aptitude install $apt
+        sudo aptitude install ${apt}
 
     elif [[ -x "$(which apt-get)" ]]; then
         echo "Add i386 arch"
         sudo dpkg --add-architecture i386
 
         echo "Installing missing libs :"
-        sudo apt-get install $apt
+        sudo apt-get install ${apt}
     fi
 
     ## Red Hat
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
-        sudo yum install $yum
+        sudo yum install ${yum}
     fi
 
     ## ArchLinux
     if [[ -x "$(which pacman)" ]]; then
+        echo "Enabling 'MultiLib' Repo :"
+        #TODO: Change that with a Use sed or awk instead of tea -a
+        sudo tee -a "[multilib]" /etc/pacman.conf && sudo tee -a "Include = /etc/pacman.d/mirrorlist" /etc/pacman.conf
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
-        #sudo pacman -S $pacman
+        #sudo pacman -S ${pacman}
     fi
 
     echo ""
