@@ -7,7 +7,7 @@ package manager the PandaFix doesn't work for the moment.<br />
 
 ## How to use
 ### Download the script :
-First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip) or you can use the git repo :
+First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip) or you can use the git repo :<br />
 With Git :<br />
 ```
 git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
@@ -29,4 +29,4 @@ If you want uninstall the Symlink fix run the script and choose the 4th choice:<
 ```
 
 ## Misc :
-I hope this scripts can help somebody. Thanks bubylou for your contribution.
+I hope this scripts can help somebody. Thanks bubylou for your contribution and improvement.
