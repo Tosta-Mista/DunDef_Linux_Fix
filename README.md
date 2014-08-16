@@ -6,12 +6,13 @@ package manager the PandaFix doesn't work for the moment.<br />
 - ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result. Thanks in advance.<br />
 
 ## How to use
-### Download the script :
+### Download the script
 First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef_Linux_Fix/archive/master.zip) or you can use the git repo :<br />
 With Git :<br />
 ```
 git clone https://github.com/Tosta-Mixta/DunDef_Linux_Fix.git
 ```
+### Run your script
 Afterward if you want run your script, make sure your file is executable :<br />
 ```
 cd DunDef_Linux_Fix/
@@ -28,5 +29,5 @@ If you want uninstall the Symlink fix run the script and choose the 4th choice:<
 " [4] -> Cleaning      --> Remove Symlink Fix!"
 ```
 
-## Misc :
+## Misc
 I hope this scripts can help somebody. Thanks bubylou for your contribution and improvement.
