@@ -116,7 +116,7 @@ function PandaFix {
         #TODO: Change that with a Use sed or awk instead of tee -a
         echo "[multilib]" | sudo tee -a /etc/pacman.conf && echo "Include = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf
         echo "Installing missing libs :"
-        echo "Pacman is currently not supported"
+        echo "Support of pacman package manager is currently in testing..."
         sudo pacman -Syy && sudo pacman -S ${pacman}
     fi
 
@@ -150,12 +150,10 @@ while true; do
         1)
             SymLinkFix
             LaunchGame
-            exit 0;
             ;;
         2)
             PandaFix
             LaunchGame
-            exit 0;
             ;;
         3)
             # Prints out all directories used to provide your libs
@@ -163,7 +161,6 @@ while true; do
             ;;
         4)
             Cleaning
-            exit 0;
             ;;
         Q|q)
             exit 0;
