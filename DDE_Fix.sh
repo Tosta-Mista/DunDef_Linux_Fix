@@ -76,7 +76,6 @@ function SymLinkFix () {
 
     clear
     echo "Symlinking Done!"
-    GameLaunch
 }
 
 # PandaFix workaround (For Debian/Ubuntu/Kubuntu etc... ) install the package needed and afterwards the libs are provided
@@ -122,7 +121,6 @@ function PandaFix {
     echo "Checking unavailable libs (If you have nothing then you're good :))"
     echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
-    GameLaunch
 }
 
 Cleaning () {
