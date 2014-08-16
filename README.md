@@ -24,7 +24,9 @@ Now you can run your script :<br />
 ### Uninstall
 [Only for SymLink Fix]<br />
 If you want uninstall the Symlink fix run the script and choose the 4th choice:<br />
-" [4] -> Cleaning      --> Remove Symlink Fix!"<br />
+```
+" [4] -> Cleaning      --> Remove Symlink Fix!"
+```
 
 ## Misc :
 I hope this scripts can help somebody. Thanks bubylou for your contribution.
