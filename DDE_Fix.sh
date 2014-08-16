@@ -68,14 +68,7 @@ function CheckLibs () {
 
 # Not an Edge Fix this workaround seems work well on SteamOS linux flavour.
 function SymLinkFix () {
-    ## Check for available libs :
-    echo "Checking for available libs..."
-    echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep lib  | tr "\t" " " | cut -d"=" -f1`
-    echo ""
-
-    echo "Checking for unavailable libs..."
-    echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
-    echo ""
+    CheckLibs
 
     ## Doing job
     ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/* ${DUNDEF_LIB_PATH}
@@ -83,6 +76,7 @@ function SymLinkFix () {
 
     clear
     echo "Symlinking Done!"
+    GameLaunch
 }
 
 # PandaFix workaround (For Debian/Ubuntu/Kubuntu etc... ) install the package needed and afterwards the libs are provided
@@ -91,7 +85,7 @@ function PandaFix {
     CheckLibs
 
     # Installing Main libs
-    ## Debian
+    ## Debian Flavours
     if [[ -x "$(which aptitude)" ]]; then
         echo "Add i386 arch"
         sudo dpkg --add-architecture i386
@@ -107,19 +101,20 @@ function PandaFix {
         sudo apt-get update && sudo apt-get install ${apt}
     fi
 
-    ## Red Hat
+    ## Red Hat Flavours
     if [[ -x "$(which yum)" ]]; then
         echo "Installing missing libs :"
         sudo yum update && sudo yum install ${yum}
     fi
 
-    ## ArchLinux
+    ## ArchLinux Flavours
     if [[ -x "$(which pacman)" ]]; then
         echo "Enabling 'MultiLib' Repo :"
         #TODO: Change that with a Use sed or awk instead of tea -a
         sudo tee -a "[multilib]" /etc/pacman.conf && sudo tee -a "Include = /etc/pacman.d/mirrorlist" /etc/pacman.conf
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
+        #TODO: Remove comment when ${pacman} is provided.
         #sudo pacman -Syu && sudo pacman -S ${pacman}
     fi
 
@@ -127,10 +122,7 @@ function PandaFix {
     echo "Checking unavailable libs (If you have nothing then you're good :))"
     echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo ""
-
-    echo "# ATTENTION : ################################################################"
-    echo "# If OpenGL is no longer supported, please reinstall your NVIDIA/ATI Drivers #"
-    echo "##############################################################################"
+    GameLaunch
 }
 
 Cleaning () {
