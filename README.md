@@ -2,7 +2,7 @@ DunDef3.2_Linux_Fix
 ===================
 Quick fix for Dungeon Defender Eternity on Linux. This scripts should work on all Linux flavours. If you use "pacman" as
 package manager the PandaFix doesn't work for the moment.<br />
-I Looking for all package needed on ArchLinux to complete this Fix... But you can try the SymLinkFix.<br />
+I'm looking for all package needed on ArchLinux to complete this Fix... But you can try the SymLinkFix.<br />
 ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result.<br />
 Thanks in advance.
 ## How to use
