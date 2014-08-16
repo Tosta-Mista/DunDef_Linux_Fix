@@ -6,6 +6,10 @@
 # Thanks for your feedback, reports...
 ###########################
 
+# Update your locate
+echo "Settings up PATHS..."
+sudo updatedb
+
 # SET PATH :
 STEAMPATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", ""); print }'`
 STEAM_LIB_PATH=`locate "steam.pid" | head -1 | awk '{ sub("/[a-z]*.[a-z]*.$", "/ubuntu12_32/steam-runtime/i386/usr/lib/i386-linux-gnu/*"); print }'`
