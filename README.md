@@ -7,7 +7,7 @@ ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue
 Thanks in advance.
 ## How to use
 ### Download the script :
-First of all you must download the script to your computer, you can download the file [Here](https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip) or you can use the git repo :
+First of all you must download the script to your computer, you can download the file [here](https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix/archive/master.zip) or you can use the git repo :
 With Git :<br />
 ```
 git clone https://github.com/Tosta-Mixta/DunDef3.2_Linux_Fix.git
@@ -23,7 +23,7 @@ Now you can run your script :<br />
 ```
 ### Uninstall
 [Only for SymLink Fix]<br />
-If you want uninstall the Symlink fix juste run ths script and choose the 4th choice:<br />
+If you want uninstall the Symlink fix run the script and choose the 4th choice:<br />
 " [4] -> Cleaning      --> Remove Symlink Fix!"<br />
 
 ## Misc :
