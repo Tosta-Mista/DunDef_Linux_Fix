@@ -117,7 +117,6 @@ function PandaFix {
         echo "[multilib]" | sudo tee -a /etc/pacman.conf && echo "Include = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf
         echo "Installing missing libs :"
         echo "Pacman is currently not supported"
-        #TODO: Remove comment when ${pacman} is provided.
         sudo pacman -Syy && sudo pacman -S ${pacman}
     fi
 
