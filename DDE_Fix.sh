@@ -24,7 +24,7 @@ DUNDEF_LAUNCHER_PATH=`locate DunDefEternityLauncher | sort -u`
 
 # List of package used for Debian :
 apt="libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 curl:i386 libcurl4-openssl-dev:i386 \
-    libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libpangocairo-1.0-0:i386 \
+    libfreetype6:i386 libxrandr2:i386 libgtk2.0-0:i386 libpango-1.0-0:i386 libnss3-dev:i386 libpangocairo-1.0-0:i386 \
     libasound2-dev:i386 libgdk-pixbuf2.0-0:i386"
 # List of package used for RedHat :
 yum="GConf2.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 cryptopp.i686 libcurl.i686 libcurl-devel.i686 \
