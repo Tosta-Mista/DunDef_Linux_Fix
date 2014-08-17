@@ -117,8 +117,13 @@ function PandaFix {
 
     ## ArchLinux Flavours
     if [[ -x "$(which pacman)" ]]; then
-        echo -e "${yellow}Enabling 'MultiLib' Repo :${nc}"
-        sudo sed 's/#\[multilib\]/\[multilib\]/g;s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' -i /etc/pacman.conf
+        line=$(grep -n -A 2 "#\[multilib\]" pacman.conf | grep -o '[0-9]\{2,3\}')
+        if [[ -n "$line" ]]; then
+            echo -e "${yellow}Enabling 'MultiLib' Repo :${nc}"
+            for num in $line; do
+                sed -i ''$num's/#//' pacman.conf
+            done
+        fi
         echo -e "${yellow}Installing missing libs :${nc}"
         echo -e "${yellow}/!\ Support of pacman package manager is currently in testing...${nc}"
         sudo pacman -Syy && sudo pacman -S ${pacman}
