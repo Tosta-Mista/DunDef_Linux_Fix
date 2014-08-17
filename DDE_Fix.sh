@@ -113,8 +113,9 @@ function PandaFix {
     ## ArchLinux Flavours
     if [[ -x "$(which pacman)" ]]; then
         echo "Enabling 'MultiLib' Repo :"
-        #TODO: Change that with a Use sed or awk instead of tee -a
-        echo "[multilib]" | sudo tee -a /etc/pacman.conf && echo "Include = /etc/pacman.d/mirrorlist" | sudo tee -a /etc/pacman.conf
+        sudo sed 's/#\[multilib\]/\[multilib\]/g' -i /etc/pacman.conf
+        sudo sed 's/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' -i /etc/pacman.conf
+
         echo "Installing missing libs :"
         echo "Support of pacman package manager is currently in testing..."
         sudo pacman -Syy && sudo pacman -S ${pacman}
