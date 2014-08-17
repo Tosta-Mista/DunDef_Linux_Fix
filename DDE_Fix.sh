@@ -18,8 +18,8 @@ sudo updatedb
 STEAMPATH=`locate "steam.pipe" | head -1 | sed "s/\/steam\.pipe/\//"`
 STEAM_LIB_PATH=`locate steam-runtime/i386 | head -1`
 STEAMAPPS=`find ${STEAMPATH} -name SteamApps`
-DUNDEF_LIB_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternity/Binaries/Linux/"
-DUNDEF_LAUNCHER_PATH="$STEAMAPPS/common/DunDefEternity/DunDefEternityLauncher"
+DUNDEF_LIB_PATH=`locate DunDefEternity | grep "/DunDefEternity/Binaries/Linux" | head -1`
+DUNDEF_LAUNCHER_PATH=`locate DunDefEternityLauncher | sort -u`
 
 # List of package used for Debian :
 apt="libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 curl:i386 libcurl4-openssl-dev:i386 \
