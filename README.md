@@ -1,9 +1,8 @@
 # Dungeon Defender Eternity Fix
 ## Purpose
-- Quick fix for Dungeon Defender Eternity on Linux. This scripts should work on all Linux flavours. If you use "pacman" as
-package manager the PandaFix doesn't work for the moment.<br />
-- I'm looking for all package needed on ArchLinux to complete this Fix... But you can try the SymLinkFix.<br />
-- ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result. Thanks in advance.<br />
+- Quick fix for Dungeon Defender Eternity on Linux. This scripts should work on all Linux flavours.<br />
+ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result.<br /> 
+Thanks in advance.<br />
 
 ## How to use
 ### Download the script
@@ -30,4 +29,5 @@ If you want uninstall the Symlink fix run the script and choose the 4th choice:<
 ```
 
 ## Misc
-I hope this scripts can help somebody. Thanks bubylou for your contribution and improvement.
+I hope this scripts can help somebody. 
+Thanks Bubylou for your contribution and improvement.
