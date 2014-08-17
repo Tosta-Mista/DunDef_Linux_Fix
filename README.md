@@ -1,6 +1,7 @@
 # Dungeon Defender Eternity Fix
 ## Purpose
 - Quick fix for Dungeon Defender Eternity on Linux. This scripts should work on all Linux flavours.<br />
+
 ArchLinux, Gentoo and other linux flavours testers are welcome! => Open an issue with your result.<br /> 
 Thanks in advance.<br />
 
