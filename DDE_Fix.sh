@@ -5,13 +5,16 @@
 # Big thanks for the community arround Valve!
 # Thanks for your feedback, reports...
 ###########################
+# Bash Trap commmand
+trap bashtrap INT
 
 purple='\e[0;35m'
 yellow='\e[1;33m'
+red='\e[1;31m'
 nc='\e[0m'
 
 # Update your locate
-echo "Settings up PATHS..."
+echo -e "${red}Settings up PATHS...${nc}"
 sudo updatedb
 
 # SET PATH :
@@ -33,6 +36,11 @@ yum="GConf2.i686 libvorbis.i686 SFML.i686 SFML-devel.i686 cryptopp.i686 libcurl.
 # List of package used for Arch :
 pacman="gconf lib32-libvorbis sfml crypto++ lib32-libgcrypt curl lib32-nss lib32-openssl lib32-libfreetype \
     lib32-libxrandr lib32-gtk2 lib32-pango libtiger lib32-gdk-pixbuf2"
+
+# Bash trap function:
+bashtrap () {
+    echo -e "${red}CTRL+C Detected !... If you want exit please use \"Q\" or \"q\".${nc}"
+}
 
 # Function used to ask if the user want to launch the game :
 function LaunchGame () {
@@ -76,6 +84,41 @@ function CheckLibs () {
     echo -e "${purple}------------------------------------------------------${nc}"
 }
 
+function Check64bit () {
+    if [ $(uname -m) = "x86_64" ]; then
+        echo -e "${red}You use a 64 bit Linux${nc}"
+        # If debian/Ubuntu
+        if [ ${1} = "dpkg" ];then
+            echo -e "${yellow}Add i386 arch${nc}"
+            sudo dpkg --add-architecture i386
+        fi
+
+        # If Arch
+        if [ ${1} = "pacman" ];then
+            line=$(grep -n -A 2 "#\[multilib\]" pacman.conf | grep -o '[0-9]\{2,3\}')
+            if [[ -n "${line}" ]]; then
+                echo -e "${yellow}Enabling 'MultiLib' Repo :${nc}"
+                for num in ${line}; do
+                    sed -i ''${num}'s/#//' pacman.conf
+                done
+            fi
+        fi
+        ## If Redhat nothing to do.
+    else
+        echo -e "{red}You use a 32 bit Linux.${nc}"
+        echo -e "{red}Change package list to 32 bit package.${nc}"
+        # Change to 32 bit package (Debian):
+        apt="libgconf-2-4 libvorbisfile3 libsfml-dev libcrypto++-dev curl libcurl4-openssl-dev libfreetype6 libxrandr2 \
+            libgtk2.0-0 libpango-1.0-0 libnss3-dev libpangocairo-1.0-0 libasound2-dev libgdk-pixbuf2.0-0"
+        # Change to 32 bit package (RedHat):
+        yum="GConf2 libvorbis SFML SFML-devel cryptopp libcurl libcurl-devel freetype freetype-devel libXrandr \
+            libXrandr-devel gtk2 gtk2-devel pango pango-devel cairo cairo-devel gtk-pixbuf2-devel gtk-pixbuf2"
+        # Change to 32 bit package (Arch):
+        pacman="gconf libvorbis sfml crypto++ libgcrypt curl nss openssl libfreetype libxrandr gtk2 pango libtiger \
+                gdk-pixbuf2"
+    fi
+}
+
 function SymLinkFix () {
     CheckLibs
 
@@ -91,34 +134,32 @@ function SymLinkFix () {
     echo -e "${purple}------------------------------------------------------${nc}"
 }
 
-function PandaFix {
+function PandaFix () {
     CheckLibs
 
     # Installing Main libs
     ## Debian Flavours
-    if [[ -x "$(which aptitude)" ]]; then
-        echo -e "${yellow}Add i386 arch${nc}"
-        sudo dpkg --add-architecture i386
+    if [[ -x "$(which apt-get)" ]]; then
+        Check64bit dpkg
         echo -e "${yellow}Installing missing libs :${nc}"
         sudo aptitude update && sudo aptitude install ${apt}
 
-    elif [[ -x "$(which apt-get)" ]]; then
-        echo -e "${yellow}Add i386 arch"
-        sudo dpkg --add-architecture i386
+    elif [[ -x "$(which aptitude)" ]]; then
+        Check64bit dpkg
         echo -e "${yellow}Installing missing libs :${nc}"
         sudo apt-get update && sudo apt-get install ${apt}
     fi
 
     ## Red Hat Flavours
     if [[ -x "$(which yum)" ]]; then
+        Check64bit yum
         echo -e "${yellow}Installing missing libs :${nc}"
         sudo yum update && sudo yum install ${yum}
     fi
 
     ## ArchLinux Flavours
     if [[ -x "$(which pacman)" ]]; then
-        echo -e "${yellow}Enabling 'MultiLib' Repo :${nc}"
-        sudo sed 's/#\[multilib\]/\[multilib\]/g;s/#Include = \/etc\/pacman.d\/mirrorlist/Include = \/etc\/pacman.d\/mirrorlist/g' -i /etc/pacman.conf
+        Check64bit pacman
         echo -e "${yellow}Installing missing libs :${nc}"
         echo -e "${yellow}/!\ Support of pacman package manager is currently in testing...${nc}"
         sudo pacman -Syy && sudo pacman -S ${pacman}
@@ -170,7 +211,7 @@ while true; do
             exit 0;
             ;;
         *)
-            echo -e "${yellow}${choice} is not available"
+            echo -e "${red}${choice} is not available${nc}"
             ;;
     esac
 done
