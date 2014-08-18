@@ -85,7 +85,7 @@ function CheckLibs () {
 }
 
 function Check64bit () {
-    if [ $(uname -m) = "x86_64" ]; then
+    if [ $(getconf LONG_BIT) -eq "64" ]; then
         echo -e "${red}You use a 64 bit Linux${nc}"
         # If debian/Ubuntu
         if [ ${1} = "dpkg" ];then
