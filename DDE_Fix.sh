@@ -142,12 +142,12 @@ function PandaFix () {
     if [[ -x "$(which apt-get)" ]]; then
         Check64bit dpkg
         echo -e "${yellow}Installing missing libs :${nc}"
-        sudo aptitude update && sudo aptitude install ${apt}
+        sudo apt-get update && sudo apt-get install ${apt}
 
     elif [[ -x "$(which aptitude)" ]]; then
         Check64bit dpkg
         echo -e "${yellow}Installing missing libs :${nc}"
-        sudo apt-get update && sudo apt-get install ${apt}
+        sudo aptitude update && sudo aptitude install ${apt}
     fi
 
     ## Red Hat Flavours
