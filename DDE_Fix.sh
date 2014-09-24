@@ -15,14 +15,15 @@ nc='\e[0m'
 
 # Update your locate
 echo -e "${red}Settings up PATHS...${nc}"
+sudo updatedb
 
 # SET PATH :
-STEAMPATH=`find / -name "steam.pipe" 2>&1 | head -1 | sed "s/\/steam\.pipe/\//"`
-STEAM_LIB_PATH=`find / -name "steam-runtime" 2>&1 | head -1`/i386
-STEAMAPPS=`find / -name "SteamApps" 2>&1 | head -1`
+STEAMPATH=`locate "steam.pipe" | head -1 | sed "s/\/steam\.pipe/\//"`
+STEAM_LIB_PATH=`locate steam-runtime/i386 | head -1`
+STEAMAPPS=`locate SteamApps | grep "SteamApps" | head -1`
 # In case of the game path is not the default path :
-DUNDEF_LIB_PATH=`find / -name "DunDefEternity" 2>&1 | head -1`/DunDefEternity/Binaries/Linux
-DUNDEF_LAUNCHER_PATH=`find / -name "DunDefEternityLauncher" 2>&1 | head -1`
+DUNDEF_LIB_PATH=`locate DunDefEternity | grep "/DunDefEternity/Binaries/Linux" | head -1`
+DUNDEF_LAUNCHER_PATH=`locate DunDefEternityLauncher | sort -u`
 
 # List of package used for Debian :
 apt="libgconf-2-4:i386 libvorbisfile3:i386 libsfml-dev:i386 libcrypto++-dev:i386 curl:i386 libcurl4-openssl-dev:i386 \
