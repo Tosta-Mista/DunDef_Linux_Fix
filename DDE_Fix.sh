@@ -122,14 +122,17 @@ function SymLinkFix () {
     CheckLibs
 
     ## Doing job
-    ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/* ${DUNDEF_LIB_PATH}
-    ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/* ${DUNDEF_LIB_PATH}
+    missing_libs=`ldd ${DUNDEF_LAUNCHER_PATH} | tr "\t" " " | cut -d"=" -f1`
+    for lib in ${missing_libs}; do
+		echo ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+		echo ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+	done
 
     clear
     echo -e "${yellow}Symlinking Done!${nc}"
     echo -e "${purple}------------------------------------------------------${nc}"
     echo -e "${yellow}Missing libs :${nc}"
-    echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
+    echo ${missing_libs}
     echo -e "${purple}------------------------------------------------------${nc}"
 }
 
