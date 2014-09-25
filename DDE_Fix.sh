@@ -76,11 +76,13 @@ function CheckLibs () {
     echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo -e "${purple}------------------------------------------------------${nc}"
 
-    echo ""
-    echo -e "${yellow}Directories used for your libs${nc}"
-    # Prints out all directory used to provide your libs
-    sudo ldconfig -v 2>/dev/null | grep -v ^$'\t'
-    echo -e "${purple}------------------------------------------------------${nc}"
+    if [ $1 != 1 ]; then
+        echo ""
+        echo -e "${yellow}Directories used for your libs${nc}"
+        # Prints out all directory used to provide your libs
+        sudo ldconfig -v 2>/dev/null | grep -v ^$'\t'
+        echo -e "${purple}------------------------------------------------------${nc}"
+    fi
 }
 
 function Check64bit () {
@@ -119,7 +121,7 @@ function Check64bit () {
 }
 
 function SymLinkFix () {
-    CheckLibs
+    CheckLibs 0
 
     ## Doing job
     missing_libs=$(ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1)
