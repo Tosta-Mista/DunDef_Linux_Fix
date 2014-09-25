@@ -123,12 +123,23 @@ function SymLinkFix () {
 
     ## Doing job
     missing_libs=$(ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1)
-    for lib in ${missing_libs}; do
-        echo "Add missings lib : ${lib}"
-		ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
-		ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
-	done
 
+    ## Check if the Dundef path exists, if the game is not downloaded yet but the user want to apply the Fix
+    ## if the directory do not exists, then we create the directory to put the symlink inside.
+    if [ -d "$DUNDEF_LIB_PATH" ]; then
+        for lib in ${missing_libs}; do
+            echo "Add missings lib : ${lib}"
+		    ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+		    ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+	    done
+    else
+        mkdir -p ${DUNDEF_LIB_PATH}
+        for lib in ${missing_libs}; do
+            echo "Add missings lib : ${lib}"
+		    ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+		    ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+	    done
+    fi
     echo -e "${yellow}Symlinking Done!${nc}"
     echo -e "${purple}------------------------------------------------------${nc}"
     echo -e "${yellow}Missing libs :${nc}"
