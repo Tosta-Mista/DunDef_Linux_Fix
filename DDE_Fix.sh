@@ -76,7 +76,7 @@ function CheckLibs () {
     echo `ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1`
     echo -e "${purple}------------------------------------------------------${nc}"
 
-    if [ $1 != 1 ]; then
+    if [ $1 == 1 ]; then
         echo ""
         echo -e "${yellow}Directories used for your libs${nc}"
         # Prints out all directory used to provide your libs
