@@ -124,11 +124,11 @@ function SymLinkFix () {
     ## Doing job
     missing_libs=$(ldd ${DUNDEF_LAUNCHER_PATH} | grep "not found" | tr "\t" " " | cut -d"=" -f1)
     for lib in ${missing_libs}; do
-		echo ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
-		echo ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+        echo "Add missings lib : ${lib}"
+		ln -sf ${STEAM_LIB_PATH}/usr/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
+		ln -sf ${STEAM_LIB_PATH}/lib/i386-linux-gnu/${lib} ${DUNDEF_LIB_PATH}
 	done
 
-    clear
     echo -e "${yellow}Symlinking Done!${nc}"
     echo -e "${purple}------------------------------------------------------${nc}"
     echo -e "${yellow}Missing libs :${nc}"
@@ -185,8 +185,8 @@ while true; do
     echo -e "${purple}|${nc} ${yellow}[ Choose your workaround ]${nc} ${purple}|${nc}"
     echo -e "${purple}+----------------------------+------------------------${nc}"
     echo -e "${purple}|${nc} ${yellow}[1] -> SymLink Fix   --> Create all symlinks needed to fix your issue. (All Linux OS)${nc}"
-    echo -e "${purple}|${nc} ${yellow}[2] -> PandaWan Fix  --> Install all package needed for your game. (All Linux OS)${nc}"
-    echo -e "${purple}|${nc} ${yellow}[3] -> ShowMyLibs    --> Show all directories used to provide your Libs (All Linux OS)${nc}"
+    echo -e "${purple}|${nc} ${yellow}[2] -> PandaWan Fix  --> Install all package needed for your game. (All Linux OS)${red}[Root Needed]${nc}"
+    echo -e "${purple}|${nc} ${yellow}[3] -> ShowMyLibs    --> Show all directories used to provide your Libs. (All Linux OS)${red}[Root Needed]${nc}"
     echo -e "${purple}|${nc} ${yellow}[4] -> Cleaning      --> Remove Symlink Fix!${nc}"
     echo -e "${purple}|${nc} ${yellow}[Q] -> Quit          --> Exit...${nc}"
     echo -e "${purple}+-----------------------------------------------------${nc}"
