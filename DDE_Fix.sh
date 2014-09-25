@@ -217,7 +217,7 @@ while true; do
             ;;
         3)
             # Prints out all directories used to provide your libs
-            CheckLibs
+            CheckLibs 1
             ;;
         4)
             Cleaning
