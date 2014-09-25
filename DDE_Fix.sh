@@ -149,7 +149,7 @@ function SymLinkFix () {
     echo -e "${purple}------------------------------------------------------${nc}"
 }
 
-function PandaFix () {
+function PackageFix () {
     CheckLibs
 
     # Installing Main libs
@@ -198,7 +198,7 @@ while true; do
     echo -e "${purple}|${nc} ${yellow}[ Choose your workaround ]${nc} ${purple}|${nc}"
     echo -e "${purple}+----------------------------+------------------------${nc}"
     echo -e "${purple}|${nc} ${yellow}[1] -> SymLink Fix   --> Create all symlinks needed to fix your issue. (All Linux OS)${nc}"
-    echo -e "${purple}|${nc} ${yellow}[2] -> PandaWan Fix  --> Install all package needed for your game. (All Linux OS)${red}[Root Needed]${nc}"
+    echo -e "${purple}|${nc} ${yellow}[2] -> Package Fix   --> Install all package needed for your game. (All Linux OS)${red}[Root Needed]${nc}"
     echo -e "${purple}|${nc} ${yellow}[3] -> ShowMyLibs    --> Show all directories used to provide your Libs. (All Linux OS)${red}[Root Needed]${nc}"
     echo -e "${purple}|${nc} ${yellow}[4] -> Cleaning      --> Remove Symlink Fix!${nc}"
     echo -e "${purple}|${nc} ${yellow}[Q] -> Quit          --> Exit...${nc}"
@@ -212,7 +212,7 @@ while true; do
             LaunchGame
             ;;
         2)
-            PandaFix
+            PackageFix
             LaunchGame
             ;;
         3)
