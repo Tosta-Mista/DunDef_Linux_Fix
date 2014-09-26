@@ -14,7 +14,7 @@ red='\e[1;31m'
 nc='\e[0m'
 
 # Update your locate
-echo -e "${red}Settings up PATHS...${nc}"
+echo -e "${red}Setting up PATHS...${nc}"
 
 # SET PATH :
 STEAMPATH=$(find / -name "steam.pipe" 2>/dev/null | head -1 | sed "s/\/steam\.pipe/\//")
